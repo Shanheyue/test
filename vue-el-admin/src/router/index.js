@@ -18,6 +18,16 @@ export default new Router({
       component: layout,
       children: [
         {
+          path: '/dashboard/address',
+          name: 'address',
+          component: resolve => require(['@/views/shop/Address.vue'], resolve)
+        },
+        {
+          path: '/dashboard/order',
+          name: 'order',
+          component: resolve => require(['@/views/order/Order.vue'], resolve)
+        },
+        {
           path: '/dashboard/table',
           name: 'table',
           component: resolve => require(['@/views/table/Basictable.vue'], resolve)

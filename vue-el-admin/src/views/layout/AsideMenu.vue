@@ -1,6 +1,9 @@
 <template>
   <div class="asideMenu">
-    <el-menu style="border: 0 ;min-height:100%" :router="true" :default-active="$route.path" :collapse="!hiddenMenu" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+    <div class="logo-area">
+      <img src="@/assets/image/logo.jpg" width="180px" height="60px" />
+    </div>
+    <el-menu class="nav-menu" :router="true" :default-active="$route.path" :collapse="!hiddenMenu" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
       <template v-for="item in menu">
         <el-submenu v-if="item.children" :key="item.id" :index="item.path">
           <template slot="title">
@@ -22,42 +25,12 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import NavItems from '@/router/NavItems'
 export default {
   name: 'asideMenu',
   data() {
     return {
-      menu: [
-        {
-          id: '1',
-          name: '表格',
-          icon: 'v-icon-biaoge',
-          path: '/dashboard/table'
-        },
-        {
-          id: '2',
-          name: '图表',
-          icon: 'v-icon-chart',
-          path: '/dashboard/chart',
-          children: [
-            {
-              id: '2-1',
-              name: '基本图表',
-              path: '/dashboard/basicChart'
-            },
-            {
-              id: '2-2',
-              name: '动态图表',
-              path: '/dashboard/activedChart'
-            }
-          ]
-        },
-        {
-          id: '3',
-          name: '拖拽',
-          icon: 'v-icon-drag',
-          path: '/dashboard/drag'
-        }
-      ]
+      menu: NavItems
     }
   },
   computed: { ...mapState(['hiddenMenu']) }
@@ -67,15 +40,25 @@ export default {
 .asideMenu {
   width: 100%;
   height: 100%;
-  i {
-    position: absolute;
-    left: 20px;
-    font-size: 18px;
-    color: white;
+  .logo-area {
+    display: block;
+    width: 100%;
+    height: 60px;
+    padding-left: 2px;
   }
-  span {
-    position: absolute;
-    left: 64px;
+  .nav-menu {
+    border: 0;
+    min-height: calc(100% - 60px);
+    i {
+      position: absolute;
+      left: 20px;
+      font-size: 18px;
+      color: white;
+    }
+    span {
+      position: absolute;
+      left: 64px;
+    }
   }
 }
 </style>
